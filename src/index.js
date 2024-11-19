@@ -69,18 +69,23 @@ function Header(){
     </header> 
 }
 
-function Menu(){
+function Menu()
+{
+  const pizzas =  pizzaData;
+  const pizzasNum = pizzaData.length; 
     return (
         <main className='menu'>
            <h2>Menu Special</h2> 
+           {
+             pizzas &&
             <ul>
-            {
-              pizzaData.map((pizza) => (
-                <Pizza key={pizza.name} pizzaObj={pizza} />
-              ))
-           }
+              {
+                pizzas.map((pizza) => (
+                  <Pizza key={pizza.name} pizzaObj={pizza} />
+                ))
+              }
             </ul>
-          
+           }     
         </main>
         )
       }
