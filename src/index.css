@@ -12,10 +12,10 @@ html {
 
 body {
   font-family: 'Roboto Mono', sans-serif;
-  color: #252525;
+  color: #333333;
   font-weight: 400;
-  background-color: #f7f2e9;
-  border-bottom: 1.6rem solid #edc84b;
+  background-color: #fff5e6; /* Beige chiaro, simile a Just Eat */
+  border-bottom: 1.6rem solid #ff5a00; /* Just Eat arancione */
   min-height: 100vh;
   padding: 3.2rem;
   padding-bottom: 6rem;
@@ -38,10 +38,7 @@ body {
 }
 
 .header h1 {
-  /* Non-accessible color */
-  color: #edc84b;
-  /* color: #af8602; */
-
+  color: #ff5a00; /* Arancione Just Eat */
   text-transform: uppercase;
   text-align: center;
   font-size: 5.2rem;
@@ -58,7 +55,7 @@ body {
   content: '';
   height: 3px;
   width: 12rem;
-  background-color: #edc84b;
+  background-color: #ff5a00; /* Arancione Just Eat */
   position: absolute;
   top: calc(50% - 1px);
 }
@@ -89,6 +86,7 @@ body {
   text-transform: uppercase;
   letter-spacing: 3px;
   font-weight: 500;
+  color: #e3342f; /* Rosso Just Eat */
 }
 
 .menu > p {
@@ -96,6 +94,7 @@ body {
   text-align: center;
   line-height: 1.6;
   width: 80%;
+  color: #666666;
 }
 
 .pizzas {
@@ -114,6 +113,7 @@ body {
   width: 12rem;
   aspect-ratio: 1;
   align-self: start;
+  border: 3px solid #ff5a00; /* Arancione */
 }
 
 .pizza div {
@@ -126,6 +126,7 @@ body {
 .pizza h3 {
   font-size: 2rem;
   font-weight: 400;
+  color: #333333;
 }
 
 .pizza p {
@@ -133,15 +134,17 @@ body {
   font-weight: 300;
   font-style: italic;
   margin-bottom: auto;
+  color: #999999;
 }
 
 .pizza span {
   display: block;
   font-size: 1.6rem;
+  color: #e3342f; /* Rosso */
 }
 
 .pizza.sold-out {
-  color: #888;
+  color: #cccccc;
 }
 
 .pizza.sold-out img {
@@ -149,10 +152,15 @@ body {
   opacity: 0.8;
 }
 
+.btn:hover{
+  cursor: pointer;
+}
+
 /* *************** */
 
 .footer {
   font-size: 1.4rem;
+  color: #666666;
 }
 
 .order {
@@ -163,25 +171,11 @@ body {
 }
 
 .btn {
-  color: inherit;
+  color: #ffffff;
   font-family: inherit;
   border: none;
   font-size: 1.4rem;
   font-weight: 500;
-  background-color: #edc84b;
+  background-color: #ff5a00; /* Arancione */
   padding: 1.4rem 3.2rem;
-  cursor: pointer;
-  transition: all 0.2s;
 }
-
-.btn:hover {
-  background-color: #e9bb24;
-}
-
-/*
-SPACING SYSTEM (px)
-2 / 4 / 8 / 12 / 16 / 24 / 32 / 40 / 48 / 64 / 80 / 96 / 128
-
-FONT SIZE SYSTEM (px)
-10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 /52 / 62 / 74 / 86 / 98
-*/

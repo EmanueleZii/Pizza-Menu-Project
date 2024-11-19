@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-//import { data } from './data.js';
+//import { pizzaData } from './data.js';
 /*inizio-data.js*/
 
 const pizzaData = [
@@ -48,7 +48,7 @@ const pizzaData = [
       soldOut: false,
     },
 ];
-  
+
 /*fine-data.js*/ 
 function App()
 {
@@ -63,7 +63,7 @@ function App()
 
 function Header(){
     // const style =  {color:'red', fontSize:'47px', textTransform:"uppercase"};
-    const style =  {color:'red', fontSize:'47px', textTransform:"uppercase"};
+    const style =  {color:'orange', fontSize:'47px', textTransform:"uppercase"};
     return <header className='header footer'>
           <h1  style={style}>Pizza Just React And Eat Co.</h1>
     </header> 
@@ -73,10 +73,14 @@ function Menu(){
     return (
         <main className='menu'>
            <h2>Menu Special</h2> 
-           <Pizza name='Pizza Spinaci' photoName='pizzas/spinaci.jpg' ingredients='Tomato, mozarella, spinach, and ricotta cheese' price={12} />
-           <Pizza name='Pizza Funghi' photoName='pizzas/funghi.jpg' ingredients='Tomato, mozarella, mushrooms, and onion' price={12} />
-           <Pizza name='Pizza Salamino' photoName='pizzas/salamino.jpg' ingredients='Tomato, mozarella, and pepperoni' price={15} />
-           <Pizza name='Pizza Prosciutto' photoName='pizzas/prosciutto.jpg' ingredients='Tomato, mozarella, ham, aragula, and burrata cheese' price={18} />
+            <ul>
+            {
+              pizzaData.map((pizza) => (
+                <Pizza key={pizza.name} pizzaObj={pizza} />
+              ))
+           }
+            </ul>
+          
         </main>
         )
       }
@@ -84,26 +88,30 @@ function Menu(){
 function Pizza(props)
 { 
   return <div className='pizza'>
-            <img src={props.photoName} alt={props.name}></img>
+            <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name}></img>
             <div>
-              <h3>{props.name}</h3>
-              <p>{props.ingredients}</p>
-              <p>{props.price}</p>
+              <h3>{props.pizzaObj.name}</h3>
+              <p>{props.pizzaObj.ingredients}</p>
+              <p>{props.pizzaObj.price}</p>
+              <button className='btn'>Pre-Order Now!</button>
             </div>
           </div>;    
 }
       
-function Footer(){
+function Footer()
+{
     const hour = new Date().getHours();
-    // const openHour = 12;
-    // const closeHour = 22;
-    // if (hour >= openHour && hour <= closeHour) 
-    //      alert("Open Now!");
-    // else
-    //    alert("Closed Now! sorry");
-
+    const openHour =12;
+    const closeHour = 22;
+    const isOpen = hour >= openHour && hour < closeHour;
     return  <footer className='footer'>
-             <p>Copyright {new Date().toDateString()} Pizza Just React And Eat Co.</p>
+            {isOpen &&
+              <div className='order'> 
+               <p>We're open until {closeHour}:00pm </p>
+              <button className='btn'>Order Now!</button>
+              </div>
+
+            }
             </footer>;
 }
 
