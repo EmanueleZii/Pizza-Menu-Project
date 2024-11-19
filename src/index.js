@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-
+//import { data } from './data.js';
 /*inizio-data.js*/
+
 const pizzaData = [
     {
       name: "Focaccia",
@@ -46,7 +47,7 @@ const pizzaData = [
       photoName: "pizzas/prosciutto.jpg",
       soldOut: false,
     },
-  ];
+];
   
 /*fine-data.js*/ 
 function App()
@@ -62,7 +63,7 @@ function App()
 
 function Header(){
     // const style =  {color:'red', fontSize:'47px', textTransform:"uppercase"};
-     const style =  {color:'red', fontSize:'47px', textTransform:"uppercase"};
+    const style =  {color:'red', fontSize:'47px', textTransform:"uppercase"};
     return <header className='header footer'>
           <h1  style={style}>Pizza Just React And Eat Co.</h1>
     </header> 
@@ -72,13 +73,26 @@ function Menu(){
     return (
         <main className='menu'>
            <h2>Menu Special</h2> 
-           <Pizza />
-           <Pizza />
-           <Pizza />
+           <Pizza name='Pizza Spinaci' photoName='pizzas/spinaci.jpg' ingredients='Tomato, mozarella, spinach, and ricotta cheese' price={12} />
+           <Pizza name='Pizza Funghi' photoName='pizzas/funghi.jpg' ingredients='Tomato, mozarella, mushrooms, and onion' price={12} />
+           <Pizza name='Pizza Salamino' photoName='pizzas/salamino.jpg' ingredients='Tomato, mozarella, and pepperoni' price={15} />
+           <Pizza name='Pizza Prosciutto' photoName='pizzas/prosciutto.jpg' ingredients='Tomato, mozarella, ham, aragula, and burrata cheese' price={18} />
         </main>
         )
-}
+      }
 
+function Pizza(props)
+{ 
+  return <div className='pizza'>
+            <img src={props.photoName} alt={props.name}></img>
+            <div>
+              <h3>{props.name}</h3>
+              <p>{props.ingredients}</p>
+              <p>{props.price}</p>
+            </div>
+          </div>;    
+}
+      
 function Footer(){
     const hour = new Date().getHours();
     // const openHour = 12;
@@ -91,15 +105,6 @@ function Footer(){
     return  <footer className='footer'>
              <p>Copyright {new Date().toDateString()} Pizza Just React And Eat Co.</p>
             </footer>;
-}
-
-function Pizza()
-{
-    return <div className='pizza'>
-        <img src='pizzas/spinaci.jpg' width="200" alt='Pizza_Spinaci'></img>
-         <h3>Pizza Spinaci</h3>
-         <p>Tomato, mozarella, spinach, and ricotta cheese</p>
-        </div>;    
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
