@@ -72,12 +72,16 @@ function Header(){
 function Menu()
 {
   const pizzas =  pizzaData;
-  const pizzasNum = pizzaData.length; 
-    return (
+    
+  return (
         <main className='menu'>
            <h2>Menu Special</h2> 
            {
-             pizzas &&
+             pizzas.length>0 ?
+            (
+            <>
+             <p style={{fontSize:'18px'}}>Welcome to JustEat Pizzeria, your go-to place for enjoying the best pizzas right at home! Our menu offers a wide selection of options, from classics like Margherita and Pepperoni to gourmet specialties made with fresh, high-quality ingredients. Customize your pizza with your favorite extras and choose from traditional, whole-grain, or gluten-free dough. Order now and experience the taste of authentic Italian pizza! 🍕</p>
+            <br></br>
             <ul>
               {
                 pizzas.map((pizza) => (
@@ -85,39 +89,52 @@ function Menu()
                 ))
               }
             </ul>
-           }     
+            </>):(
+            <p>Sold out sorry</p>
+            )}     
         </main>
         )
-      }
+}
 
 function Pizza(props)
 { 
+  if (props.pizzaObj.soldOut)
+    return null;
+
   return <div className='pizza'>
             <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name}></img>
             <div>
               <h3>{props.pizzaObj.name}</h3>
               <p>{props.pizzaObj.ingredients}</p>
-              <p>{props.pizzaObj.price}</p>
+              {props.soldOut ?(<span>Sold Out</span>):(<p>{props.pizzaObj.price}</p>)}
               <button className='btn'>Pre-Order Now!</button>
             </div>
-          </div>;    
+        </div>;    
 }
       
 function Footer()
 {
     const hour = new Date().getHours();
-    const openHour =12;
+    const openHour = 12;
     const closeHour = 22;
     const isOpen = hour >= openHour && hour < closeHour;
-    return  <footer className='footer'>
-            {isOpen &&
-              <div className='order'> 
-               <p>We're open until {closeHour}:00pm </p>
-              <button className='btn'>Order Now!</button>
-              </div>
-
-            }
+   
+   return  <footer className='footer'>
+            { isOpen ? (
+              <Order closeHour={closeHour} /> ):(
+                <p>We're open from {openHour} come back later</p>
+              )}
             </footer>;
+}
+
+function Order({closeHour})
+{
+  return(
+    <div className='order'> 
+        <p>We're open until {closeHour}:00pm </p>
+        <button className='btn'>Order Now!</button>
+   </div>
+  );
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
